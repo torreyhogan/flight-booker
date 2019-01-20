@@ -1,0 +1,25 @@
+<h1>Book Your Flight.</h1> 
+<%= params[:flight_id] %>
+<%= params[:num_tickets] %>
+
+
+<% if params[:num_tickets] %>
+	<%= form_for @booking do |f| %>
+		<%= f.hidden_field(:flight_id, value: params[:flight_id].to_i) %>
+		<%= f.hidden_field(:passenger_num, value: params[:num_tickets].to_i) %>
+		
+			<%= f.fields_for(:passengers) do |p| %>
+				<div>
+					<h3>Passenger:</h3>
+					<%= p.label :name %>
+					<%= p.text_field :name %>
+					<%= p.label :email %>
+					<%= p.text_field :email %>
+				
+				</div>
+			
+		<% end %>
+		<%= submit_tag("Submit") %>
+	<% end %>
+<% end %>
+				

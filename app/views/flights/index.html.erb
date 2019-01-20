@@ -25,13 +25,16 @@
 	<h2>Search Results</h2>
 
 	<%= form_tag('/bookings/new', method: "get") do %>
-		<%= hidden_field(:num_tickets, value: params[:num_tickets]) %>
+		
 		<% @flights.each do |flight| %>
 
-			From: <%= flight.start_airport.code %>, To: <%= flight.finish_airport.code %>, At: <%= flight.start_time %>
+			From: <%= flight.start_airport.code %>, To: <%= flight.finish_airport.code %>, On: <%= flight.start_date_formatted %>, At: <%= flight.start_time.strftime("%H:%M") %> <%= params[:num_tickets] %>
 			<%= radio_button_tag(:flight_id, flight.id) %>  
+			<br>
+
 				
 		<% end %>
+		<%= hidden_field_tag(:num_tickets, params[:num_tickets]) %>
 		<%= submit_tag("Book Flight") %>
 	<% end %>
 <% end %>
