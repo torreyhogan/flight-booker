@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-	root "flights#index"
+  get '/gaiagps', to: 'static_pages#gaia'
+	
   resources :flights
   # root 'flights'
   resources :bookings do 
