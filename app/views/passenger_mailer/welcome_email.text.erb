@@ -1,0 +1,15 @@
+Welcome to example.com, <%= @passenger.name %>
+===============================================
+ 
+Welcome to flight-booker, <%= @passenger.name %>
+
+You have successfully booked a seat on flight #<%= @passenger.booking.flight_id %>, under the name: <%= @passenger.name %>.
+  
+  Departure: <%= @flight.start_airport.code %> 
+  Arrival: <%= @flight.finish_airport.code %>
+  On: <%= @flight.start_date_formatted %> at: <%= @flight.start_time.strftime("%H:%M") %>
+  Flight duration: <%= Time.at(@flight.flight_duration.to_i).utc.strftime("%H:%M:%S") %>
+  
+
+To login to the site, just follow this link: <%= @url %>.
+Thanks for booking and have a great day!

@@ -17,7 +17,12 @@ class BookingsController < ApplicationController
 		# @booking.passengers.each {|x| x.booking_id = @booking.id}
 
 		if @booking.save
+			@booking.passengers.each do |passenger|
+				PassengerMailer.with(passenger: passenger).welcome_email.deliver_now
+				
+			end
 			redirect_to @booking 
+
 		else
 			render action: :new
 		end
@@ -26,6 +31,8 @@ class BookingsController < ApplicationController
 	def show
 		@booking = Booking.find(params[:id])
 	end
+
+
 
 
 	private
